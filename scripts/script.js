@@ -3,7 +3,6 @@ const words = ["hello", "never", "bullet", "spring", "summer",
     "xbox", "laptop", "paper tissue", "parking"];
 
 
-
 let chances = 0;
 let usedLetters = [];
 let usedFlag = 0;
@@ -11,8 +10,11 @@ let usedFlag = 0;
 const display = document.querySelector(".clue");
 const playerStatus = document.querySelector(".status p");
 const image = document.querySelector(".display img");
+const letters = document.querySelectorAll(".letters div");
+const reset = document.querySelector(".reset-btn");
 
-// get random number
+
+// get random number based on number of words
 function getRandom(array) {
     let randomNumber = Math.floor(Math.random() * 1000) % array.length;
     return randomNumber;
@@ -20,19 +22,18 @@ function getRandom(array) {
 
 //set blank (_) based on random word
 function setBlanks(word) {
-    let blankWords = "";
-    let splitedword = word.split(" ");
-    let blank = "", finalBlank = "";
+    let blankWords = [];
+    let splitedword = word.split("");
 
-    for (let i = 0; i < splitedword.length; i++) {
-        for (let j = 0; j < splitedword[i].length; j++) {
-            blank += "_";
+    for (let item of splitedword) {
+        if (item === " ") {
+            blankWords.push(" ");
+        } else {
+            blankWords.push("_");
         }
-        blankWords = splitedword[i].replace(splitedword[i], blank);
-        blank = "";
-        finalBlank += (blankWords + " ");
     }
-    finalBlank = finalBlank.trim();
+
+    let finalBlank = blankWords.join('');
     console.log(word);
     display.innerText = finalBlank;
     return finalBlank;
@@ -44,15 +45,18 @@ function setCharAt(str, index, chr) {
     return str.substring(0, index) + chr + str.substring(index + 1);
 }
 
-//click function - check every letters in word and put user input in it
+//click function - set clicked styles and disable used ones
 function clickLetters(inputLetter) {
-    let input = "";
-    usedLetters.forEach(item => item.includes(inputLetter) ? usedFlag = 1 : usedFlag = 0);
+    usedLetters.includes(inputLetter) ? usedFlag = 1 : usedFlag = 0;
     if (chances < 6 && usedFlag == 0) {
-        input = (inputLetter).toLowerCase();
         usedLetters.push(inputLetter);
         document.getElementById(inputLetter).className = "clicked";
+        checkLetter(inputLetter.toLowerCase());
     }
+}
+
+// check the input letter if it is correct or not
+function checkLetter(input) {
     if (randomWord.includes(input)) {
         for (let i = 0; i < randomWord.length; i++) {
             if (input === randomWord[i]) {
@@ -68,17 +72,38 @@ function clickLetters(inputLetter) {
     if (blankWord === randomWord) {
         playerStatus.innerText = "YOU WIN";
         image.src = "./images/assets/winner.png";
+    } else if (chances == 6) {
+        playerStatus.innerText = ":(";
     }
+}
+
+function resetGame(){
+    chances = 0;
+    usedLetters = [];
+    usedFlag = 0;
+    randomNumber = getRandom(words);
+    randomWord = words[randomNumber]; 
+    blankWord = setBlanks(randomWord);
+    playerStatus.innerText = "Choose any letter you think is correct";
+    image.src = "./images/assets/hangman0.png";
+    letters.forEach(item => item.classList.remove("clicked"));
 }
 
 let randomNumber = getRandom(words);  // get a random number for choosing random word in the range of our array
 let randomWord = words[randomNumber];  // choose a word from array based on random number
-
 let blankWord = setBlanks(randomWord);
 
-const letters = document.querySelectorAll(".letters div");
-letters.forEach(element => element.addEventListener("click", (event) => clickLetters(event.target.innerText)));
-window.addEventListener("keydown", (event) => clickLetters(event.key))
+letters.forEach(element => element.addEventListener("click", (event) => clickLetters(event.target.innerText.toUpperCase())));
+window.addEventListener("keydown", (event) => { // keyboard event listener
+    let input = event.key.toUpperCase();
+    letters.forEach(letter => {
+        if (letter.innerText == input) {
+            clickLetters(input);
+        }
+    })
+});
+
+reset.addEventListener("click", resetGame);
 
 
 
