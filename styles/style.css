@@ -1,0 +1,80 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: cursive;
+    box-sizing: border-box;
+    background-color: #efebe9;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    padding: 24px 0;
+}
+
+
+.letters {
+    width: clamp(300px , 100% , 1200px);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 16px;
+    padding: 0 10px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 32px;
+}
+
+.letters div {
+    cursor: pointer;
+    font-size: 20px;
+    width: 50px;
+    height: 50px;
+    border: solid 1px #000;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s;
+}
+
+.letters div:hover {
+    border: none;
+    background-color: #bdb9b7;
+    transform: translateY(-5px) scale(1.1, 1.1);
+}
+
+.display {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 100px;
+}
+
+.clue {
+    height: 80px;
+    font-size: 3rem;
+    letter-spacing: 20px;
+}
+
+footer {
+    font: bold 1.2rem cursive;
+}
+
+.clicked {
+    background-color: #bdb9b7;
+}
+
+.clicked:hover{
+    transform: unset !important;
+}
