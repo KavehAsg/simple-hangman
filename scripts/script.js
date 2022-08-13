@@ -1,14 +1,16 @@
 const words = ["hello", "never", "bullet", "spring", "summer",
     "fall", "winter", "game", "book store", "call of duty", "mother", "fortnite", "playstation",
-    "xbox", "dybala", "laptop", "paper tissue", "parking", "meraj", "soltan kaveh", "sag to meraj"];
+    "xbox", "laptop", "paper tissue", "parking"];
+
+
 
 let chances = 0;
 let usedLetters = [];
 let usedFlag = 0;
 
 const display = document.querySelector(".clue");
-const playerStatus = document.querySelector(".status");
-const image = document.querySelector(".guy img");
+const playerStatus = document.querySelector(".status p");
+const image = document.querySelector(".display img");
 
 // get random number
 function getRandom(array) {
@@ -64,7 +66,7 @@ function clickLetters(inputLetter) {
     }
 
     if (blankWord === randomWord) {
-        playerStatus.innerText = "YOU WIN Mother fuckka";
+        playerStatus.innerText = "YOU WIN";
         image.src = "./images/assets/winner.png";
     }
 }

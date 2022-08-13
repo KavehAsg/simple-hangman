@@ -7,16 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hangman</title>
     <link rel="icon" href="./images/icon/icon-pic.png">
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./styles/style.css">
 </head>
 
 <body>
-    <header>
         <h1 class="title">Hangman</h1>
-    </header>
 
     <main class="container">
-        <div class="letters">
+        <section class="letters">
             <div id="A">A</div>
             <div id="B">B</div>
             <div id="C">C</div>
@@ -43,17 +41,22 @@
             <div id="X">X</div>
             <div id="Y">Y</div>
             <div id="Z">Z</div>
-        </div>
-        <section class="guy">
-            <img src="./images/assets/hangman0.png" alt="hangman">
         </section>
 
-        <section class="clue"></section>
+        <section class="display">
+            <img src="./images/assets/hangman0.png" alt="hangman">
+
+            <div class="clue"></div>
+        </section>
+
     </main>
 
-    <footer class="status">Choose the above letters mother fucker</footer>
+    <footer class="status">
+        <p>Choose any letter you think is correct</p>
+        <button class="reset-btn">reset</button>
+    </footer>
 
-    <script src="./script.js"></script>
+    <script src="./scripts/script.js"></script>
 </body>
 
 </html>
