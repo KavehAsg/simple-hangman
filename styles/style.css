@@ -19,7 +19,7 @@ body {
 
 
 .letters {
-    width: clamp(300px , 100% , 1200px);
+    width: clamp(300px, 100%, 1200px);
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
@@ -49,20 +49,23 @@ body {
 }
 
 .letters div:hover {
-    border: none;
     background-color: #bdb9b7;
-    transform: translateY(-5px) scale(1.1, 1.1);
+    transform: translateY(-3px) scale(1.1, 1.1);
 }
 
 .display {
+    width: 100%;
     display: flex;
     justify-content: space-around;
     align-items: center;
     gap: 100px;
 }
 
+.display img {
+    width: 150px;
+}
+
 .clue {
-    height: 80px;
     font-size: 3rem;
     letter-spacing: 20px;
 }
@@ -75,6 +78,67 @@ footer {
     background-color: #bdb9b7;
 }
 
-.clicked:hover{
+.clicked:hover {
     transform: unset !important;
+}
+
+
+@media(min-width: 481px) and (max-width: 1200px) {
+    body {
+        padding: 16px 0;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .letters div {
+        width: 45px;
+        height: 45px;
+    }
+
+    .display img {
+        width: 110px;
+    }
+
+    .clue {
+        font-size: 2.5rem;
+    }
+}
+
+@media(min-width: 280px) and (max-width: 480px) {
+    body {
+        padding: 10px 0;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .letters div {
+        width: 40px;
+        height: 40px;
+    }
+
+    .display {
+        flex-direction: column-reverse;
+        gap: 50px;
+    }
+
+    .display img {
+        width: 110px;
+    }
+
+    .clue {
+        width: 100%;
+        padding: 0 12px;
+        font-size: 1.6rem;
+        text-align: center;
+        word-wrap: break-word;
+        word-break: break-all;
+    }
+
+    footer{
+        text-align: center;
+    }
 }
